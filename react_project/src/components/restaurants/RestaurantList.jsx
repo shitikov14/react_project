@@ -40,11 +40,11 @@ export const RestaurantList = ({restaurants}) => {
         ))}
       </div>
 
-      <ul className="restaurants__list">
+      <div className="restaurants__list">
         {activeRestaurant && (
           <Restaurant restaurant={activeRestaurant} />
         )}
-      </ul>
+      </div>
     </>
 
   )

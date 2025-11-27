@@ -2,7 +2,7 @@ import { MenuList } from "../menu/MenuList";
 import { ReviewList } from "../reviews/ReviewList";
 export const Restaurant = ({ restaurant }) => {
   return (
-    <li className="restaurants__list-block">
+    <div className="restaurants__list-block">
       <h2>{restaurant.name}</h2>
       {restaurant.menu?.length ? (
         <MenuList menu={restaurant.menu} />
@@ -14,6 +14,6 @@ export const Restaurant = ({ restaurant }) => {
       ) : (
         <p>Отзывов пока нет</p>
       )}
-    </li>
+    </div>
   );
 };
