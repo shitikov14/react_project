@@ -1,29 +1,52 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+// eslint.config.js
+import js from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
+import globals from "globals";
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
+  // Базовые рекомендации ESLint
+  js.configs.recommended,
+
+  // Настройки для React кода в src
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
+    files: ["src/**/*.{js,jsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+      },
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true, // <--- сказать парсеру "в коде есть JSX"
+        },
       },
     },
+    plugins: {
+      react: reactPlugin,
+    },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // ---- ЛИШНИЕ ПРОБЕЛЫ / ОТСТУПЫ ----
+      "no-multi-spaces": "error",                 // несколько пробелов подряд
+      "no-trailing-spaces": "error",              // пробелы в конце строки
+      indent: ["error", 2, { SwitchCase: 1 }],    // отступы в 2 пробела
+
+      // ---- Реакт-особенности под Vite / новый JSX ----
+      "react/react-in-jsx-scope": "off", // React не нужен в импорте
+      "react/prop-types": "off",         // не заставляем писать PropTypes
+      "no-unused-vars": "warn",
+    },
+    settings: {
+      react: {
+        version: "detect", // убирает варнинг "React version not specified"
+      },
     },
   },
-])
+
+  // Игнорируем
+  //  служебные папки и сам конфиг
+  {
+    ignores: ["dist/**", "node_modules/**", "eslint.config.js"],
+  },
+];
