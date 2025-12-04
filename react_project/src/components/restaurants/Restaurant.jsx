@@ -1,5 +1,6 @@
 import { MenuList } from "../menu/MenuList";
 import { ReviewList } from "../reviews/ReviewList";
+import { ReviewForm } from "../reviews/ReviewForm";
 export const Restaurant = ({ restaurant }) => {
   return (
     <div className="restaurants__list-block">
@@ -14,6 +15,7 @@ export const Restaurant = ({ restaurant }) => {
       ) : (
         <p>Отзывов пока нет</p>
       )}
+      <ReviewForm />
     </div>
   );
 };

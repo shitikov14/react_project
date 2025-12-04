@@ -1,52 +1,39 @@
-// eslint.config.js
 import js from "@eslint/js";
-import reactPlugin from "eslint-plugin-react";
 import globals from "globals";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
-  // Базовые рекомендации ESLint
-  js.configs.recommended,
-
-  // Настройки для React кода в src
+  { ignores: ["dist"] },
   {
-    files: ["src/**/*.{js,jsx}"],
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      globals: {
-        ...globals.browser,
-        ...globals.es2021,
-      },
+      ecmaVersion: 2020,
+      globals: globals.browser,
       parserOptions: {
-        ecmaFeatures: {
-          jsx: true, // <--- сказать парсеру "в коде есть JSX"
-        },
+        ecmaVersion: "latest",
+        ecmaFeatures: { jsx: true },
+        sourceType: "module",
       },
     },
     plugins: {
-      react: reactPlugin,
+      react,
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
     },
+    settings: { react: { version: "19.1" } },
     rules: {
-      // ---- ЛИШНИЕ ПРОБЕЛЫ / ОТСТУПЫ ----
-      "no-multi-spaces": "error",                 // несколько пробелов подряд
-      "no-trailing-spaces": "error",              // пробелы в конце строки
-      indent: ["error", 2, { SwitchCase: 1 }],    // отступы в 2 пробела
-
-      // ---- Реакт-особенности под Vite / новый JSX ----
-      "react/react-in-jsx-scope": "off", // React не нужен в импорте
-      "react/prop-types": "off",         // не заставляем писать PropTypes
-      "no-unused-vars": "warn",
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      ...react.configs["jsx-runtime"].rules,
+      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "react/prop-types": 0,
     },
-    settings: {
-      react: {
-        version: "detect", // убирает варнинг "React version not specified"
-      },
-    },
-  },
-
-  // Игнорируем
-  //  служебные папки и сам конфиг
-  {
-    ignores: ["dist/**", "node_modules/**", "eslint.config.js"],
   },
 ];
