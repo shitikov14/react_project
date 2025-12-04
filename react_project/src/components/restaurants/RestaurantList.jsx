@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Restaurant } from "../restaurants/Restaurant";
+import classNames from "classnames";
+import styles from './RestaurantList.module.css';
 
 export const RestaurantList = ({ restaurants }) => {
 
@@ -13,21 +15,26 @@ export const RestaurantList = ({ restaurants }) => {
 
   return (
     <>
-      <div>
-        {restaurants.map(r => (
-          <button
-            key={r.id}
-            onClick={() => setActiveId(r.id)}
-            style={{
-              fontWeight: r.id === activeId ? "bold" : "normal"
-            }}
-          >
-            {r.name}
-          </button>
-        ))}
-      </div>
+      <div className={classNames(styles['restaurant-list__wrapper'])}>
+        <div className={classNames(styles['restaurants-list__tabs'])}>
+          {restaurants.map(r => (
+            <button
+              key={r.id}
+              onClick={() => setActiveId(r.id)}
+              className={classNames(
+                styles["restaurants-list__tab-button"],
+                {
+                  [styles["restaurants-list__tab-button--active"]]: r.id === activeId,
+                }
+              )}
+            >
+              {r.name}
+            </button>
+          ))}
+        </div>
 
-      <Restaurant restaurant={activeRestaurant} />
+        <Restaurant restaurant={activeRestaurant} />
+      </div>
     </>
   );
 };

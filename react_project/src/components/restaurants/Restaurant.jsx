@@ -1,9 +1,12 @@
 import { MenuList } from "../menu/MenuList";
 import { ReviewList } from "../reviews/ReviewList";
-import { ReviewForm } from "../reviews/ReviewForm";
+import { ReviewForm } from "../reviews/review-form/ReviewForm";
+import classNames from "classnames";
+import styles from './RestaurantList.module.css';
+
 export const Restaurant = ({ restaurant }) => {
   return (
-    <div className="restaurants__list-block">
+    <div className={classNames(styles['restaurants__list-block'])}>
       <h2>{restaurant.name}</h2>
       {restaurant.menu?.length ? (
         <MenuList menu={restaurant.menu} />

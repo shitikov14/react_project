@@ -1,5 +1,7 @@
 import { useReducer } from 'react';
-import { Counter } from "../counter/Counter";
+import { Counter } from "../../counter/Counter";
+import classNames from "classnames";
+import styles from './ReviewForm.module.css';
 
 const initialState = {
     name: "",
@@ -50,33 +52,41 @@ export const ReviewForm = () => {
     };
  
     return (
-        <form onSubmit={handleSubmit} className="review__form">
-            <div className="review__form-item">
-                <label>Name</label>
+        <form onSubmit={handleSubmit} className={classNames(styles['review__form'])}>
+            <div className={classNames(styles['review__form-item'])}>
                 <input 
-                    type="text" 
+                    type="text"
+                    className={classNames(styles['review__form-item--input'])}
                     value={form.name} 
+                    placeholder='Your name'
                     onChange={(e) => 
                         dispatch({type: "setName", payload: e.target.value})
                     }
                 />
             </div>
             <div className="review__form-item">
-                <label>Review</label>
                 <textarea 
                     value={form.text} 
+                    className={classNames(styles['review__form-item--textarea'])}
+                    placeholder='Review'
                     onChange={(e) => 
                         dispatch({type: "setText", payload: e.target.value})
                     }
                 />
             </div>
-            <div className="review__form-item">
-                <label>Rating</label>
+            <div className={classNames(styles['review__form-rating'])}>
+            <label style={{marginRight: '12px'}}>Rating:</label>
+                <Counter
+                    value={form.rating}
+                    onIncrement={incrementRating}
+                    onDecrement={decrementRating}
+                />
                 <input 
                     type="number"
                     min={1}
                     max={5}
-                    value={form.rating} 
+                    value={form.rating}
+                    style={{marginLeft: '12px'}}
                     onChange={(e) => {
                         const value = Number(e.target.value);
                         const safeValue = Math.min(5, Math.max(1, value || 1));
@@ -84,16 +94,12 @@ export const ReviewForm = () => {
                     }}
                 />
             </div>
-            <div className="review__form-rating">
-                <label>Rating</label>
-                <Counter
-                value={form.rating}
-                onIncrement={incrementRating}
-                onDecrement={decrementRating}
-                />
-            </div>
             <div className='review__form-actions'>
-                <button type="button" onClick={handleClear}>Clear</button>
+                <button 
+                  type="button"
+                  className={classNames(styles['review__form-button-clear'])}
+                  onClick={handleClear}
+                >Clear</button>
             </div>
         </form>
     )
