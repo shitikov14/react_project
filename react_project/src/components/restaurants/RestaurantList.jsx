@@ -15,16 +15,16 @@ export const RestaurantList = ({ restaurants }) => {
 
   return (
     <>
-      <div className={classNames(styles['restaurant-list__wrapper'])}>
-        <div className={classNames(styles['restaurants-list__tabs'])}>
+      <div className={classNames(styles['restaurantWrapper'])}>
+        <div className={classNames(styles['restaurantsTabs'])}>
           {restaurants.map(r => (
             <button
               key={r.id}
               onClick={() => setActiveId(r.id)}
               className={classNames(
-                styles["restaurants-list__tab-button"],
+                styles["tabButton"],
                 {
-                  [styles["restaurants-list__tab-button--active"]]: r.id === activeId,
+                  [styles["tabButtonActive"]]: r.id === activeId,
                 }
               )}
             >

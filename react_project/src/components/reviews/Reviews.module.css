@@ -1,14 +1,14 @@
-.reviews__list {
+.reviewsList {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 24px;
 }
 
-.reviews__list-block {
+.reviewsListBlock {
   padding: 0;
 }
 
-.review__block {
+.reviewBlock {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 24px;

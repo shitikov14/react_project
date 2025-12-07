@@ -1,0 +1,16 @@
+.buttonClean {
+    align-items: center;
+    background: #82c814;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    outline: none;
+    padding: 12px 16px;
+    text-decoration: none;
+    user-select: none;
+}

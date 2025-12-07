@@ -5,7 +5,7 @@ export const Counter = ({ value, onDecrement, onIncrement }) => {
   return (
     <div className="counter">
       <button type="button" onClick={onDecrement}>-</button>
-      <span className={classNames(styles['counter__number'])}>{value}</span>
+      <span className={classNames(styles['counterField'])}>{value}</span>
       <button type="button" onClick={onIncrement}>+</button>
     </div>
   );

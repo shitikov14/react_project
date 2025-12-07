@@ -4,9 +4,9 @@ import styles from './Menu.module.css';
 
 export const MenuList = ({ menu }) => {
   return (
-    <div className={classNames(styles['menu__list'])}>
+    <div className={classNames(styles['menuList'])}>
       <h3>Меню</h3>
-      <ul className='menu__list-block'>
+      <ul className='menuListBlock'>
         {menu.map(item => (
           <MenuItem item={item} key={item.id}/>
         ))}
