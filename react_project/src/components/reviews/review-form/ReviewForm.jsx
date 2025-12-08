@@ -98,8 +98,9 @@ export const ReviewForm = () => {
             <div>
                 <Button 
                     value="Clear"
-                    disable={false}
-                    className={"buttonClean"}
+                    variant="outline"
+                    disabled={false}
+                    size="s"
                     handler={handleClear}
                 />
             </div>

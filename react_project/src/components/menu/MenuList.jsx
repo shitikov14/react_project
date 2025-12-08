@@ -6,7 +6,7 @@ export const MenuList = ({ menu }) => {
   return (
     <div className={classNames(styles['menuList'])}>
       <h3>Меню</h3>
-      <ul className='menuListBlock'>
+      <ul className={classNames(styles['menuList'])}>
         {menu.map(item => (
           <MenuItem item={item} key={item.id}/>
         ))}
