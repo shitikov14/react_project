@@ -6,7 +6,7 @@ import styles from './RestaurantList.module.css';
 
 export const Restaurant = ({ restaurant }) => {
   return (
-    <div className={classNames(styles['restaurants__list-block'])}>
+    <div className={classNames(styles['restaurantsListBlock'])}>
       <h2>{restaurant.name}</h2>
       {restaurant.menu?.length ? (
         <MenuList menu={restaurant.menu} />

@@ -1,14 +1,14 @@
-.menu__list {
+.menuList {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 24px;
 }
 
-.menu__list-block {
+.menuListBlock {
   padding: 16px 0 0 0;
 }
 
-.menu__list-item {
+.menuListItem {
     display: flex;
     justify-content: space-between;
     margin-top: 12px;

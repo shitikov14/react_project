@@ -1,16 +1,16 @@
-.restaurant-list__wrapper {
+.restaurantWrapper {
     width: 600px;
     margin: 0 auto;
     padding: 40px 0;
 }
 
-.restaurants-list__tabs {
+.restaurantsTabs {
   display: flex;
   gap: 14px;
   border-bottom: 1px solid #e8e8e8;
 }
 
-.restaurants-list__tab-button {
+.tabButton {
   padding: 8px 0 14px 0;
   border: none;
   cursor: pointer;
@@ -20,12 +20,12 @@
   font-size: 16px;
 }
 
-.restaurants-list__tab-button--active {
+.tabButtonActive {
   color: black;
   border-bottom: 2px solid rgb(68, 177, 68);
 }
 
-.restaurants__list-block {
+.restaurantsListBlock {
   box-shadow: 0 0 16px 4px rgba(34, 60, 80, .2);
   border-radius: 10px;
   padding: 40px;

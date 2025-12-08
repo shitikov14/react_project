@@ -4,7 +4,7 @@ import styles from './Menu.module.css';
 
 export const MenuItem = ({ item }) => {
   return (
-    <li className={classNames(styles['menu__list-item'])}>
+    <li className={classNames(styles['menuListItem'])}>
       {item.name} - {item.price}$ 
       <DishCounter />
     </li>

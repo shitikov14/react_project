@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import { Counter } from "../../counter/Counter";
+import { Button } from '../../button/Button.jsx'
 import classNames from "classnames";
 import styles from './ReviewForm.module.css';
 
@@ -52,11 +53,11 @@ export const ReviewForm = () => {
     };
  
     return (
-        <form onSubmit={handleSubmit} className={classNames(styles['review__form'])}>
-            <div className={classNames(styles['review__form-item'])}>
+        <form onSubmit={handleSubmit} className={classNames(styles['reviewForm'])}>
+            <div className={classNames(styles['reviewWrapper'])}>
                 <input 
                     type="text"
-                    className={classNames(styles['review__form-item--input'])}
+                    className={classNames(styles['inputForm'])}
                     value={form.name} 
                     placeholder='Your name'
                     onChange={(e) => 
@@ -64,17 +65,17 @@ export const ReviewForm = () => {
                     }
                 />
             </div>
-            <div className="review__form-item">
+            <div className="reviewWrapper">
                 <textarea 
                     value={form.text} 
-                    className={classNames(styles['review__form-item--textarea'])}
+                    className={classNames(styles['textareaForm'])}
                     placeholder='Review'
                     onChange={(e) => 
                         dispatch({type: "setText", payload: e.target.value})
                     }
                 />
             </div>
-            <div className={classNames(styles['review__form-rating'])}>
+            <div className={classNames(styles['ratingWrap'])}>
             <label style={{marginRight: '12px'}}>Rating:</label>
                 <Counter
                     value={form.rating}
@@ -94,12 +95,14 @@ export const ReviewForm = () => {
                     }}
                 />
             </div>
-            <div className='review__form-actions'>
-                <button 
-                  type="button"
-                  className={classNames(styles['review__form-button-clear'])}
-                  onClick={handleClear}
-                >Clear</button>
+            <div>
+                <Button 
+                    value="Clear"
+                    variant="outline"
+                    disabled={false}
+                    size="s"
+                    handler={handleClear}
+                />
             </div>
         </form>
     )
